@@ -88,3 +88,28 @@ select {
     justify-content: center;
     align-items: center;
 }
+
+
+.board {
+    display: flex;
+    flex-direction: column;
+    background-color: #0da192;
+    gap: 5px;
+}
+
+.row1,
+.row2,
+.row3 {
+    display: flex;
+    gap: 5px;
+}
+
+.cube {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    width: 100px;
+    font-size: 4rem;
+    background-color: #14BDAC;
+}
