@@ -61,6 +61,9 @@ select {
 
 .main {
     background-color: #14BDAC;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .bottom {
