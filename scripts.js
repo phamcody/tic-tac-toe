@@ -19,6 +19,16 @@ const game = (() => {
     let turn = true;
     let cubes = document.querySelectorAll('.cube');
 
+    const restartGame = () => {
+        Array.from(cubes).forEach((cube) => {
+            cube.textContent = '';
+            gameboard.board = [['', '', ''], ['', '', ''], ['', '', '']];
+            cube.disabled = false;
+        }
+)}
+
+    
+
     const boardCheck = (turn, e) => {
         if (e.target.id <= 3) {
             if (turn) {
@@ -64,11 +74,20 @@ const game = (() => {
             cube.disabled = true;
             console.log(gameboard.board);
         })
+
+
+    const restartButton = document.querySelector('.restart');
+    restartButton.addEventListener('click', () => {
+        game.restartGame()
+
+    })
+
     })}
 
 
     return {
         drawOnBoard,
+        restartGame
     };
 })();
 
