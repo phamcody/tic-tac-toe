@@ -25,7 +25,13 @@ const game = (() => {
             gameboard.board = [['', '', ''], ['', '', ''], ['', '', '']];
             cube.disabled = false;
         }
-)}
+    )}
+
+
+    const restartButton = document.querySelector('.restart');
+    restartButton.addEventListener('click', () => {
+        restartGame()
+    })
 
     
 
@@ -74,13 +80,6 @@ const game = (() => {
             cube.disabled = true;
             console.log(gameboard.board);
         })
-
-
-    const restartButton = document.querySelector('.restart');
-    restartButton.addEventListener('click', () => {
-        game.restartGame()
-
-    })
 
     })}
 
