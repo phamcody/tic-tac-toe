@@ -23,6 +23,7 @@ const game = (() => {
     let message = document.querySelector('.message');
     let xMessage = document.querySelector('.xScore');
     let oMessage = document.querySelector('.oScore');
+    let mode = document.getElementById('mode').value;
 
     const restartGame = () => {
         Array.from(cubes).forEach((cube) => {
@@ -156,8 +157,8 @@ const game = (() => {
         restartGame();
         xScore = 0;
         oScore = 0;
-        xMessage.textContent = xScore;
-        oMessage.textContent = oScore;
+        xMessage.textContent = "-";
+        oMessage.textContent = "-";
     })
 
     
@@ -204,6 +205,7 @@ const game = (() => {
                 boardCheck(turn, e);
                 turn = true;
                 message.textContent = "X Turn";
+                console.log(mode);
             }
 
             cube.disabled = true;
