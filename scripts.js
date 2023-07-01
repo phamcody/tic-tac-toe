@@ -18,19 +18,124 @@ const game = (() => {
     let computer = playerFactory('O');
     let turn = true;
     let cubes = document.querySelectorAll('.cube');
+    let xScore = 0;
+    let oScore = 0
 
     const restartGame = () => {
         Array.from(cubes).forEach((cube) => {
             cube.textContent = '';
             gameboard.board = [['', '', ''], ['', '', ''], ['', '', '']];
             cube.disabled = false;
+            turn = true;
         }
     )}
+
+    const scorePoints = (symbol) => {
+        Array.from(cubes).forEach((cube) => {
+            cube.disabled = true;
+        })
+        if (symbol === "X") {
+            xScore++
+            console.log(`X Score ${xScore}`);
+        }
+        else {
+            oScore++
+            console.log(`O Score ${oScore}`);
+        }
+        setTimeout(function() {
+            restartGame();
+        }, 1000)
+    }
+
+    const checkWinCondition = () => {
+        if (gameboard.board[0][0] === "X" &&
+            gameboard.board[0][1] === "X" &&
+            gameboard.board[0][2] === "X") {
+                scorePoints("X");
+            }
+        else if (gameboard.board[1][0] === "X" &&
+            gameboard.board[1][1] === "X" &&
+            gameboard.board[1][2] === "X") {
+                scorePoints("X");
+        }
+        else if (gameboard.board[2][0] === "X" &&
+            gameboard.board[2][1] === "X" &&
+            gameboard.board[2][2] === "X") {
+                scorePoints("X");
+            }
+        else if (gameboard.board[0][0] === "X" &&
+            gameboard.board[1][1] === "X" &&
+            gameboard.board[2][2] === "X") {
+                scorePoints("X");
+        }
+        else if (gameboard.board[0][2] === "X" &&
+            gameboard.board[1][1] === "X" &&
+            gameboard.board[2][0] === "X") {
+                scorePoints("X");
+            }
+        else if (gameboard.board[0][0] === "X" &&
+            gameboard.board[1][0] === "X" &&
+            gameboard.board[2][0] === "X") {
+                scorePoints("X");
+            }
+        else if (gameboard.board[0][1] === "X" &&
+            gameboard.board[1][1] === "X" &&
+            gameboard.board[2][1] === "X") {
+                scorePoints("X");
+            }
+        else if (gameboard.board[0][2] === "X" &&
+            gameboard.board[1][2] === "X" &&
+            gameboard.board[2][2] === "X") {
+                scorePoints("X");
+            }
+        else if (gameboard.board[0][0] === "O" &&
+            gameboard.board[0][1] === "O" &&
+            gameboard.board[0][2] === "O") {
+                scorePoints("O");
+            }
+        else if (gameboard.board[1][0] === "O" &&
+            gameboard.board[1][1] === "O" &&
+            gameboard.board[1][2] === "O") {
+                scorePoints("O");
+        }
+        else if (gameboard.board[2][0] === "O" &&
+            gameboard.board[2][1] === "O" &&
+            gameboard.board[2][2] === "O") {
+                scorePoints("O");
+            }
+        else if (gameboard.board[0][0] === "O" &&
+            gameboard.board[1][1] === "O" &&
+            gameboard.board[2][2] === "O") {
+                scorePoints("O");
+        }
+        else if (gameboard.board[0][2] === "O" &&
+            gameboard.board[1][1] === "O" &&
+            gameboard.board[2][0] === "O") {
+                scorePoints("O");
+            }
+        else if (gameboard.board[0][0] === "O" &&
+            gameboard.board[1][0] === "O" &&
+            gameboard.board[2][0] === "O") {
+                scorePoints("O");
+            }
+        else if (gameboard.board[0][1] === "O" &&
+            gameboard.board[1][1] === "O" &&
+            gameboard.board[2][1] === "O") {
+                scorePoints("O");
+            }
+        else if (gameboard.board[0][2] === "O" &&
+            gameboard.board[1][2] === "O" &&
+            gameboard.board[2][2] === "O") {
+                scorePoints("O");
+            }
+    }
 
 
     const restartButton = document.querySelector('.restart');
     restartButton.addEventListener('click', () => {
-        restartGame()
+        restartGame();
+        xScore = 0;
+        oScore = 0;
     })
 
     
@@ -78,7 +183,7 @@ const game = (() => {
             }
 
             cube.disabled = true;
-            console.log(gameboard.board);
+            checkWinCondition();
         })
 
     })}
