@@ -38,9 +38,12 @@ const game = (() => {
             xScore++
             console.log(`X Score ${xScore}`);
         }
-        else {
+        else if (symbol === "O") {
             oScore++
             console.log(`O Score ${oScore}`);
+        }
+        else {
+            console.log("DRAW");
         }
         setTimeout(function() {
             restartGame();
@@ -128,6 +131,17 @@ const game = (() => {
             gameboard.board[2][2] === "O") {
                 scorePoints("O");
             }
+        else if (gameboard.board[0][0] !== "" &&
+                gameboard.board[0][1] !== "" &&
+                gameboard.board[0][2] !== "" &&
+                gameboard.board[1][0] !== "" &&
+                gameboard.board[1][1] !== "" &&
+                gameboard.board[1][2] !== "" &&
+                gameboard.board[2][0] !== "" &&
+                gameboard.board[2][1] !== "" &&
+                gameboard.board[2][2] !== "") {
+                    scorePoints('DRAW');
+        }
     }
 
 
