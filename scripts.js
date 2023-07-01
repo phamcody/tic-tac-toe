@@ -19,7 +19,10 @@ const game = (() => {
     let turn = true;
     let cubes = document.querySelectorAll('.cube');
     let xScore = 0;
-    let oScore = 0
+    let oScore = 0;
+    let message = document.querySelector('.message');
+    let xMessage = document.querySelector('.xScore');
+    let oMessage = document.querySelector('.oScore');
 
     const restartGame = () => {
         Array.from(cubes).forEach((cube) => {
@@ -27,6 +30,7 @@ const game = (() => {
             gameboard.board = [['', '', ''], ['', '', ''], ['', '', '']];
             cube.disabled = false;
             turn = true;
+            message.textContent = "Start game";
         }
     )}
 
@@ -36,18 +40,20 @@ const game = (() => {
         })
         if (symbol === "X") {
             xScore++
-            console.log(`X Score ${xScore}`);
+            xMessage.textContent = xScore;
+            message.textContent = "X WINS";
         }
         else if (symbol === "O") {
             oScore++
-            console.log(`O Score ${oScore}`);
+            oMessage.textContent = oScore;
+            message.textContent = "O WINS"
         }
         else {
-            console.log("DRAW");
+            message.textContent = "DRAW";
         }
         setTimeout(function() {
             restartGame();
-        }, 1000)
+        }, 2500)
     }
 
     const checkWinCondition = () => {
@@ -132,15 +138,15 @@ const game = (() => {
                 scorePoints("O");
             }
         else if (gameboard.board[0][0] !== "" &&
-                gameboard.board[0][1] !== "" &&
-                gameboard.board[0][2] !== "" &&
-                gameboard.board[1][0] !== "" &&
-                gameboard.board[1][1] !== "" &&
-                gameboard.board[1][2] !== "" &&
-                gameboard.board[2][0] !== "" &&
-                gameboard.board[2][1] !== "" &&
-                gameboard.board[2][2] !== "") {
-                    scorePoints('DRAW');
+            gameboard.board[0][1] !== "" &&
+            gameboard.board[0][2] !== "" &&
+            gameboard.board[1][0] !== "" &&
+            gameboard.board[1][1] !== "" &&
+            gameboard.board[1][2] !== "" &&
+            gameboard.board[2][0] !== "" &&
+            gameboard.board[2][1] !== "" &&
+            gameboard.board[2][2] !== "") {
+                scorePoints('DRAW');
         }
     }
 
@@ -150,6 +156,8 @@ const game = (() => {
         restartGame();
         xScore = 0;
         oScore = 0;
+        xMessage.textContent = xScore;
+        oMessage.textContent = oScore;
     })
 
     
@@ -188,12 +196,14 @@ const game = (() => {
                 e.target.textContent = user.symbol;
                 boardCheck(turn, e);
                 turn = false;
+                message.textContent = "O Turn";
             }
 
             else {
                 e.target.textContent = friend.symbol;
                 boardCheck(turn, e);
                 turn = true;
+                message.textContent = "X Turn";
             }
 
             cube.disabled = true;
