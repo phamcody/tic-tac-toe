@@ -23,7 +23,7 @@ const game = (() => {
     let message = document.querySelector('.message');
     let xMessage = document.querySelector('.xScore');
     let oMessage = document.querySelector('.oScore');
-    let mode = document.getElementById('mode').value;
+    let mode = document.getElementById('mode');
 
     const restartGame = () => {
         Array.from(cubes).forEach((cube) => {
@@ -201,11 +201,12 @@ const game = (() => {
             }
 
             else {
-                e.target.textContent = friend.symbol;
-                boardCheck(turn, e);
-                turn = true;
-                message.textContent = "X Turn";
-                console.log(mode);
+                if (mode.options[mode.selectedIndex].text === "play with a friend") {
+                    e.target.textContent = friend.symbol;
+                    boardCheck(turn, e);
+                    turn = true;
+                    message.textContent = "X Turn";
+                }
             }
 
             cube.disabled = true;
