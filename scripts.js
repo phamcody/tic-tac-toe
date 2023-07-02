@@ -23,6 +23,7 @@ const game = (() => {
     let xMessage = document.querySelector('.xScore');
     let oMessage = document.querySelector('.oScore');
     let mode = document.getElementById('mode');
+    let gameWin = false;
 
     const restartGame = () => {
         Array.from(cubes).forEach((cube) => {
@@ -61,81 +62,97 @@ const game = (() => {
             gameboard.board[0][1] === "X" &&
             gameboard.board[0][2] === "X") {
                 scorePoints("X");
+                gameWin = true;
             }
         else if (gameboard.board[1][0] === "X" &&
             gameboard.board[1][1] === "X" &&
             gameboard.board[1][2] === "X") {
                 scorePoints("X");
+                gameWin = true;
         }
         else if (gameboard.board[2][0] === "X" &&
             gameboard.board[2][1] === "X" &&
             gameboard.board[2][2] === "X") {
                 scorePoints("X");
+                gameWin = true;
             }
         else if (gameboard.board[0][0] === "X" &&
             gameboard.board[1][1] === "X" &&
             gameboard.board[2][2] === "X") {
                 scorePoints("X");
+                gameWin = true;
         }
         else if (gameboard.board[0][2] === "X" &&
             gameboard.board[1][1] === "X" &&
             gameboard.board[2][0] === "X") {
                 scorePoints("X");
+                gameWin = true;
             }
         else if (gameboard.board[0][0] === "X" &&
             gameboard.board[1][0] === "X" &&
             gameboard.board[2][0] === "X") {
                 scorePoints("X");
+                gameWin = true;
             }
         else if (gameboard.board[0][1] === "X" &&
             gameboard.board[1][1] === "X" &&
             gameboard.board[2][1] === "X") {
                 scorePoints("X");
+                gameWin = true;
             }
         else if (gameboard.board[0][2] === "X" &&
             gameboard.board[1][2] === "X" &&
             gameboard.board[2][2] === "X") {
                 scorePoints("X");
+                gameWin = true;
             }
         else if (gameboard.board[0][0] === "O" &&
             gameboard.board[0][1] === "O" &&
             gameboard.board[0][2] === "O") {
                 scorePoints("O");
+                gameWin = true;
             }
         else if (gameboard.board[1][0] === "O" &&
             gameboard.board[1][1] === "O" &&
             gameboard.board[1][2] === "O") {
                 scorePoints("O");
+                gameWin = true;
         }
         else if (gameboard.board[2][0] === "O" &&
             gameboard.board[2][1] === "O" &&
             gameboard.board[2][2] === "O") {
                 scorePoints("O");
+                gameWin = true;
             }
         else if (gameboard.board[0][0] === "O" &&
             gameboard.board[1][1] === "O" &&
             gameboard.board[2][2] === "O") {
                 scorePoints("O");
+                gameWin = true;
         }
         else if (gameboard.board[0][2] === "O" &&
             gameboard.board[1][1] === "O" &&
             gameboard.board[2][0] === "O") {
                 scorePoints("O");
+                gameWin = true;
             }
         else if (gameboard.board[0][0] === "O" &&
             gameboard.board[1][0] === "O" &&
             gameboard.board[2][0] === "O") {
                 scorePoints("O");
+                gameWin = true;
             }
         else if (gameboard.board[0][1] === "O" &&
             gameboard.board[1][1] === "O" &&
             gameboard.board[2][1] === "O") {
                 scorePoints("O");
+                gameWin = true;
             }
         else if (gameboard.board[0][2] === "O" &&
             gameboard.board[1][2] === "O" &&
             gameboard.board[2][2] === "O") {
                 scorePoints("O");
+                gameWin = true;
             }
         else if (gameboard.board[0][0] !== "" &&
             gameboard.board[0][1] !== "" &&
@@ -147,6 +164,7 @@ const game = (() => {
             gameboard.board[2][1] !== "" &&
             gameboard.board[2][2] !== "") {
                 scorePoints('DRAW');
+                gameWin = true;
         }
     }
 
@@ -191,6 +209,9 @@ const game = (() => {
     }
 
     const aiPlay = () => {
+        if (gameWin) {
+            return
+        }
         if (gameboard.board[0][0] !== "" &&
             gameboard.board[0][1] !== "" &&
             gameboard.board[0][2] !== "" &&
@@ -338,6 +359,7 @@ const game = (() => {
         cube.addEventListener('click', (e) => {
             if (mode.options[mode.selectedIndex].text === "computer") {
                 if (turn) {
+                    gameWin = false;
                     e.target.textContent = user.symbol;
                     boardCheck(turn, e);
                     turn = false;
