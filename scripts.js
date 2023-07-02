@@ -15,7 +15,6 @@ const playerFactory = (symbol) => {
 const game = (() => {
     let user = playerFactory('X');
     let friend = playerFactory('O');
-    let computer = playerFactory('O');
     let turn = true;
     let cubes = document.querySelectorAll('.cube');
     let xScore = 0;
@@ -191,17 +190,163 @@ const game = (() => {
         }
     }
 
-    const drawOnBoard = () => {Array.from(cubes).forEach((cube) => {
+    const aiPlay = () => {
+        if (gameboard.board[0][0] !== "" &&
+            gameboard.board[0][1] !== "" &&
+            gameboard.board[0][2] !== "" &&
+            gameboard.board[1][0] !== "" &&
+            gameboard.board[1][1] !== "" &&
+            gameboard.board[1][2] !== "" &&
+            gameboard.board[2][0] !== "" &&
+            gameboard.board[2][1] !== "" &&
+            gameboard.board[2][2] !== ""
+        ) {
+            return;
+        }
+        else {
+            let choice = Math.floor(Math.random() * 9)
+            if (choice === 0) {
+                if (gameboard.board[0][0] === "") {
+                    gameboard.board[0][0] = friend.symbol;
+                    let area = document.getElementById('1');
+                    area.disabled = true;
+                    area.textContent = friend.symbol;
+                    turn = true;
+                }
+                else {
+                    aiPlay();
+                }
+            }
+
+            else if (choice === 1) {
+                if (gameboard.board[0][1] === "") {
+                    gameboard.board[0][1] = friend.symbol;
+                    let area = document.getElementById('2');
+                    area.disabled = true;
+                    area.textContent = friend.symbol;
+                    turn = true;
+                }
+                else {
+                    aiPlay();
+                }
+            }
+
+            else if (choice === 2) {
+                if (gameboard.board[0][2] === "") {
+                    gameboard.board[0][2] = friend.symbol;
+                    let area = document.getElementById('3');
+                    area.disabled = true;
+                    area.textContent = friend.symbol;
+                    turn = true;
+                }
+                else {
+                    aiPlay();
+                }
+            }
+
+            else if (choice === 3) {
+                if (gameboard.board[1][0] === "") {
+                    gameboard.board[1][0] = friend.symbol;
+                    let area = document.getElementById('4');
+                    area.disabled = true;
+                    area.textContent = friend.symbol;
+                    turn = true;
+                }
+                else {
+                    aiPlay();
+                }
+            }
+
+            else if (choice === 4) {
+                if (gameboard.board[1][1] === "") {
+                    gameboard.board[1][1] = friend.symbol;
+                    let area = document.getElementById('5')
+                    area.disabled = true;
+                    area.textContent = friend.symbol;
+                    turn = true;
+                }
+                else {
+                    aiPlay();
+                }
+            }
+
+            else if (choice === 5) {
+                if (gameboard.board[1][2] === "") {
+                    gameboard.board[1][2] = friend.symbol;
+                    let area = document.getElementById('6');
+                    area.disabled = true;
+                    area.textContent = friend.symbol;
+                    turn = true;
+                }
+                else {
+                    aiPlay();
+                }
+            }
+
+            else if (choice === 6) {
+                if (gameboard.board[2][0] === "") {
+                    gameboard.board[2][0] = friend.symbol;
+                    let area = document.getElementById('7');
+                    area.disabled = true;
+                    area.textContent = friend.symbol;
+                    turn = true;
+                }
+                else {
+                    aiPlay();
+                }
+            }
+
+            else if (choice === 7) {
+                if (gameboard.board[2][1] === "") {
+                    gameboard.board[2][1] = friend.symbol;
+                    let area = document.getElementById('8');
+                    area.disabled = true;
+                    area.textContent = friend.symbol;
+                    turn = true;
+                }
+                else {
+                    aiPlay();
+                }
+            }
+
+            else if (choice === 8) {
+                if (gameboard.board[2][2] === "") {
+                    gameboard.board[2][2] = friend.symbol;
+                    let area = document.getElementById('9');
+                    area.disabled = true;
+                    area.textContent = friend.symbol;
+                    turn = true;
+                }
+                else {
+                    aiPlay();
+                }
+            }
+            checkWinCondition();
+        }
+    }
+
+    const play = () => {Array.from(cubes).forEach((cube) => {
         cube.addEventListener('click', (e) => {
-            if (turn) {
-                e.target.textContent = user.symbol;
-                boardCheck(turn, e);
-                turn = false;
-                message.textContent = "O Turn";
+            if (mode.options[mode.selectedIndex].text === "computer") {
+                if (turn) {
+                    e.target.textContent = user.symbol;
+                    boardCheck(turn, e);
+                    turn = false;
+                    message.textContent = "O Turn";
+                    setTimeout(function() {
+                        aiPlay();
+                    }, 250)
+                }
             }
 
             else {
-                if (mode.options[mode.selectedIndex].text === "play with a friend") {
+                if (turn) {
+                    e.target.textContent = user.symbol;
+                    boardCheck(turn, e);
+                    turn = false;
+                    message.textContent = "O Turn";
+                }
+                else {
                     e.target.textContent = friend.symbol;
                     boardCheck(turn, e);
                     turn = true;
@@ -217,12 +362,11 @@ const game = (() => {
 
 
     return {
-        drawOnBoard,
-        restartGame
+        play
     };
 })();
 
-game.drawOnBoard();
+game.play();
 
 
 //
