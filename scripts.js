@@ -209,6 +209,7 @@ const game = (() => {
                 if (gameboard.board[0][0] === "") {
                     gameboard.board[0][0] = friend.symbol;
                     let area = document.getElementById('1');
+                    area.classList.add('oCube');
                     area.disabled = true;
                     area.textContent = friend.symbol;
                     turn = true;
@@ -222,6 +223,7 @@ const game = (() => {
                 if (gameboard.board[0][1] === "") {
                     gameboard.board[0][1] = friend.symbol;
                     let area = document.getElementById('2');
+                    area.classList.add('oCube');
                     area.disabled = true;
                     area.textContent = friend.symbol;
                     turn = true;
@@ -235,6 +237,7 @@ const game = (() => {
                 if (gameboard.board[0][2] === "") {
                     gameboard.board[0][2] = friend.symbol;
                     let area = document.getElementById('3');
+                    area.classList.add('oCube');
                     area.disabled = true;
                     area.textContent = friend.symbol;
                     turn = true;
@@ -248,6 +251,7 @@ const game = (() => {
                 if (gameboard.board[1][0] === "") {
                     gameboard.board[1][0] = friend.symbol;
                     let area = document.getElementById('4');
+                    area.classList.add('oCube');
                     area.disabled = true;
                     area.textContent = friend.symbol;
                     turn = true;
@@ -260,7 +264,8 @@ const game = (() => {
             else if (choice === 4) {
                 if (gameboard.board[1][1] === "") {
                     gameboard.board[1][1] = friend.symbol;
-                    let area = document.getElementById('5')
+                    let area = document.getElementById('5');
+                    area.classList.add('oCube');
                     area.disabled = true;
                     area.textContent = friend.symbol;
                     turn = true;
@@ -274,6 +279,7 @@ const game = (() => {
                 if (gameboard.board[1][2] === "") {
                     gameboard.board[1][2] = friend.symbol;
                     let area = document.getElementById('6');
+                    area.classList.add('oCube');
                     area.disabled = true;
                     area.textContent = friend.symbol;
                     turn = true;
@@ -287,6 +293,7 @@ const game = (() => {
                 if (gameboard.board[2][0] === "") {
                     gameboard.board[2][0] = friend.symbol;
                     let area = document.getElementById('7');
+                    area.classList.add('oCube');
                     area.disabled = true;
                     area.textContent = friend.symbol;
                     turn = true;
@@ -300,6 +307,7 @@ const game = (() => {
                 if (gameboard.board[2][1] === "") {
                     gameboard.board[2][1] = friend.symbol;
                     let area = document.getElementById('8');
+                    area.classList.add('oCube');
                     area.disabled = true;
                     area.textContent = friend.symbol;
                     turn = true;
@@ -313,6 +321,7 @@ const game = (() => {
                 if (gameboard.board[2][2] === "") {
                     gameboard.board[2][2] = friend.symbol;
                     let area = document.getElementById('9');
+                    area.classList.add('oCube');
                     area.disabled = true;
                     area.textContent = friend.symbol;
                     turn = true;
@@ -333,6 +342,7 @@ const game = (() => {
                     boardCheck(turn, e);
                     turn = false;
                     message.textContent = "O Turn";
+                    e.target.classList.remove('oCube');
                     setTimeout(function() {
                         aiPlay();
                     }, 250)
@@ -345,12 +355,14 @@ const game = (() => {
                     boardCheck(turn, e);
                     turn = false;
                     message.textContent = "O Turn";
+                    e.target.classList.remove('oCube');
                 }
                 else {
                     e.target.textContent = friend.symbol;
                     boardCheck(turn, e);
                     turn = true;
                     message.textContent = "X Turn";
+                    e.target.classList.add('oCube');
                 }
             }
 
