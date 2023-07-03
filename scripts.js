@@ -208,6 +208,15 @@ const game = (() => {
         }
     }
 
+    function aiDraw(choice) {
+        let area = document.getElementById(choice);
+        area.classList.add('oCube');
+        area.disabled = true;
+        area.textContent = friend.symbol;
+        turn = true;
+        checkWinCondition();
+    }
+
     const aiPlay = () => {
         if (gameWin) {
             return
@@ -224,16 +233,15 @@ const game = (() => {
         ) {
             return;
         }
+
+        // come back to later and turn this section of code
+        // into a function
         else {
             let choice = Math.floor(Math.random() * 9)
             if (choice === 0) {
                 if (gameboard.board[0][0] === "") {
                     gameboard.board[0][0] = friend.symbol;
-                    let area = document.getElementById('1');
-                    area.classList.add('oCube');
-                    area.disabled = true;
-                    area.textContent = friend.symbol;
-                    turn = true;
+                    aiDraw(choice+1)
                 }
                 else {
                     aiPlay();
@@ -243,11 +251,7 @@ const game = (() => {
             else if (choice === 1) {
                 if (gameboard.board[0][1] === "") {
                     gameboard.board[0][1] = friend.symbol;
-                    let area = document.getElementById('2');
-                    area.classList.add('oCube');
-                    area.disabled = true;
-                    area.textContent = friend.symbol;
-                    turn = true;
+                    aiDraw(choice+1)
                 }
                 else {
                     aiPlay();
@@ -257,11 +261,7 @@ const game = (() => {
             else if (choice === 2) {
                 if (gameboard.board[0][2] === "") {
                     gameboard.board[0][2] = friend.symbol;
-                    let area = document.getElementById('3');
-                    area.classList.add('oCube');
-                    area.disabled = true;
-                    area.textContent = friend.symbol;
-                    turn = true;
+                    aiDraw(choice+1)
                 }
                 else {
                     aiPlay();
@@ -271,11 +271,7 @@ const game = (() => {
             else if (choice === 3) {
                 if (gameboard.board[1][0] === "") {
                     gameboard.board[1][0] = friend.symbol;
-                    let area = document.getElementById('4');
-                    area.classList.add('oCube');
-                    area.disabled = true;
-                    area.textContent = friend.symbol;
-                    turn = true;
+                    aiDraw(choice+1)
                 }
                 else {
                     aiPlay();
@@ -285,11 +281,7 @@ const game = (() => {
             else if (choice === 4) {
                 if (gameboard.board[1][1] === "") {
                     gameboard.board[1][1] = friend.symbol;
-                    let area = document.getElementById('5');
-                    area.classList.add('oCube');
-                    area.disabled = true;
-                    area.textContent = friend.symbol;
-                    turn = true;
+                    aiDraw(choice+1)
                 }
                 else {
                     aiPlay();
@@ -299,11 +291,7 @@ const game = (() => {
             else if (choice === 5) {
                 if (gameboard.board[1][2] === "") {
                     gameboard.board[1][2] = friend.symbol;
-                    let area = document.getElementById('6');
-                    area.classList.add('oCube');
-                    area.disabled = true;
-                    area.textContent = friend.symbol;
-                    turn = true;
+                    aiDraw(choice+1)
                 }
                 else {
                     aiPlay();
@@ -313,11 +301,7 @@ const game = (() => {
             else if (choice === 6) {
                 if (gameboard.board[2][0] === "") {
                     gameboard.board[2][0] = friend.symbol;
-                    let area = document.getElementById('7');
-                    area.classList.add('oCube');
-                    area.disabled = true;
-                    area.textContent = friend.symbol;
-                    turn = true;
+                    aiDraw(choice+1)
                 }
                 else {
                     aiPlay();
@@ -327,11 +311,7 @@ const game = (() => {
             else if (choice === 7) {
                 if (gameboard.board[2][1] === "") {
                     gameboard.board[2][1] = friend.symbol;
-                    let area = document.getElementById('8');
-                    area.classList.add('oCube');
-                    area.disabled = true;
-                    area.textContent = friend.symbol;
-                    turn = true;
+                    aiDraw(choice+1)
                 }
                 else {
                     aiPlay();
@@ -341,17 +321,12 @@ const game = (() => {
             else if (choice === 8) {
                 if (gameboard.board[2][2] === "") {
                     gameboard.board[2][2] = friend.symbol;
-                    let area = document.getElementById('9');
-                    area.classList.add('oCube');
-                    area.disabled = true;
-                    area.textContent = friend.symbol;
-                    turn = true;
+                    aiDraw(choice+1)
                 }
                 else {
                     aiPlay();
                 }
             }
-            checkWinCondition();
         }
     }
 
@@ -367,7 +342,7 @@ const game = (() => {
                     e.target.classList.remove('oCube');
                     setTimeout(function() {
                         aiPlay();
-                    }, 250)
+                    }, 200)
                 }
             }
 
